@@ -1,0 +1,1 @@
+writesourcex_jp_ '~Projects/j_microkanren';'~Projects/j_microkanren/release/microkanren.ijs'
