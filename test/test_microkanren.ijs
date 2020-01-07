@@ -59,6 +59,12 @@ test_fresh =: 3 : 0
  assert. (1;~('';'')) -: fresh ES
 )
 
+test_conj =: 3 : 0
+NB. can't find the correct structure for now...
+ assert. '' -: (call (2 : '((u y) equ 5) conj ((u y) equ 5) (v y)') fresh ES)
+ assert. '' -: call (2 : '((u y) equ 5) conj ((u y) equ 6) (v y)') fresh ES
+)
+
 test_equ_call_fresh =: 3 : 0
  assert. (<((0,'');<(<5),'');1) -: (3 : '(call y) equ 5 (fresh y)') ES
 )
@@ -72,5 +78,17 @@ test_2nd_set_t2 =: 3 : 0
 )
 
 test_2nd_set_t3 =: 3 : 0
- ''
+ assert. '' -: 0&{:: a_and_b ES
+)
+
+test_2nd_set_t3_take =: 3 : 0
+ assert. '' -: {. a_and_b ES
+)
+
+test_2nd_set_t4 =: 3 : 0
+ assert. '' -: 1&{:: a_and_b ES
+)
+
+test_2nd_set_t5 =: 3 : 0
+ assert. '' -: }.^:2 a_and_b ES
 )
