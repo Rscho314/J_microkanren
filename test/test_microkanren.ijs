@@ -40,7 +40,7 @@ test_pairu =: 3 : 0
  assert. pairu 3;2
  assert. -. pairu 3
  assert. -. pairu ''
- assert. -. pairu (<'')
+ assert. pairu (<'') NB.CAUTION, this succeeds!
 )
 
 test_unify =: 3 : 0
@@ -60,8 +60,7 @@ test_fresh =: 3 : 0
 )
 
 test_conj =: 3 : 0
-NB. can't find the correct structure for now...
- assert. '' -: (call (2 : '((u y) equ 5) conj ((u y) equ 5) (v y)') fresh ES)
+ assert. (,<(<(<,0),<,<5),<1) -: (call (2 : '((u y) equ 5) conj ((u y) equ 5) (v y)') fresh ES)
  assert. '' -: call (2 : '((u y) equ 5) conj ((u y) equ 6) (v y)') fresh ES
 )
 
@@ -78,17 +77,29 @@ test_2nd_set_t2 =: 3 : 0
 )
 
 test_2nd_set_t3 =: 3 : 0
- assert. '' -: 0&{:: a_and_b ES
+ assert. ((<(<0 1),<7;5),<2) -: 0&{:: a_and_b ES
 )
 
 test_2nd_set_t3_take =: 3 : 0
- assert. '' -: {. a_and_b ES
+ assert. (<((<(<0 1),<7;5),<2)) -: {. a_and_b ES
 )
 
 test_2nd_set_t4 =: 3 : 0
- assert. '' -: 1&{:: a_and_b ES
+ assert. ((<(<0 1),<7;6),<2) -: 1&{:: a_and_b ES
 )
 
 test_2nd_set_t5 =: 3 : 0
- assert. '' -: }.^:2 a_and_b ES
+ assert. '' -: 2&}. a_and_b ES
+)
+
+test_who_cares =: 3 : 0
+ assert. (,<(<(<,0),<,<5),<1) -: (3 : '(call y) fives (fresh y)') ES
+)
+
+test_take_2_a_and_b_stream =: 3 : 0
+ assert. ((<((<(<0 1),<7;5),<2)),(<((<(<0 1),<7;6),<2))) -: 2&{.a_and_b ES
+)
+
+test_take_all_a_and_b_stream =: 3 : 0
+ assert. ((<((<(<0 1),<7;5),<2)),(<((<(<0 1),<7;6),<2))) -: _&{.a_and_b ES
 )
