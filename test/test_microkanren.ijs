@@ -68,6 +68,13 @@ test_equ_call_fresh =: 3 : 0
  assert. (<((0,'');<(<5),'');1) -: (3 : '(call y) equ 5 (fresh y)') ES
 )
 
+test_verbu =: 3 : 0
+ assert. 1&= verbu {.`''
+ assert. 1&= verbu (3 : '''''')`''
+ assert. 1&= verbu (4 : '''''')`''
+ assert. 0&= verbu (0 : '''''')`''
+)
+
 test_2nd_set_t1 =: 3 : 0
  assert. (((0,'');<(<5),'');1) -: 0&{::(3 : '(call y) equ 5 (fresh y)') ES
 )
@@ -93,7 +100,7 @@ test_2nd_set_t5 =: 3 : 0
 )
 
 test_who_cares =: 3 : 0
- assert. (,<(<(<,0),<,<5),<1) -: (3 : '(call y) fives (fresh y)') ES
+ assert. (<(<(<,0),<,<5),<01) -: {.(call ES) fives (fresh ES)
 )
 
 test_take_2_a_and_b_stream =: 3 : 0

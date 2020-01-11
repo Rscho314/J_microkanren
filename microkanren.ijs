@@ -54,19 +54,21 @@ equ =: 2 : 0
 )
 call =: 3 : 'var 1&{:: y'
 fresh =: 3 : '({.y),(>:&.>}.y)'
+verbu =: 3 : '((2&=@(3!:0)@((0;0)&{::) *. 32&=@(3!:0)) :: 0) y' NB.arg given as y`''
+
 mplus =: 2 : 0
- if. ((2&=@(3!:0)@((0;0)&{::) *. 32&=@(3!:0)) :: 0)u`''
-  do. (v mplus (u''))"_
- elseif. u -: ''
+ if. u -: '' NB. changed condition order to avoid problem with ''
   do. v
+ elseif. 2&= (3!:0) u NB. only checks for a string, not a procedure
+  do. v mplus (<u)
  else. ({.u),((}.u) mplus v)
  end.
 )
 bind =: 2 : 0
- if. ((2&=@(3!:0)@((0;0)&{::) *. 32&=@(3!:0)) :: 0)u`''
-  do. ((u'') bind v)"_
- elseif. u -: ''
+ if. u -: ''
   do. ''
+ elseif. 2&= (3!:0) u
+  do. (<u) bind v
  else. (v (0&{::u)) mplus ((}.u) bind v)
  end.
 )
