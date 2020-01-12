@@ -5,3 +5,4 @@ NB. path defaults to project directory.
 
 init.ijs
 microkanren.ijs
+minikanren_wrappers.ijs

@@ -3,7 +3,16 @@ a_and_b =: 3 : 0
 )
 
 fives =: 4 : 0
- c =. x
- f =. y
- (('(',(5!:5 <'c'),')','fives','(',(5!:5 <'f'),')')"_) disj (x equ 5) y
+ (('(',(5!:5 <'x'),')fives(',(5!:5 <'y'),')')"_) disj (x equ 5) y
 )
+
+sixes =: 4 : 0
+ (('(',(5!:5 <'x'),')','sixes','(',(5!:5 <'y'),')')"_) disj (x equ 6) y
+)
+
+fives_and_sixes =: 3 :0
+ ((call y) fives (fresh y)) disj ((call y) sixes (fresh y))
+)
+
+NB. fails
+NB.fives_and_sixes ES

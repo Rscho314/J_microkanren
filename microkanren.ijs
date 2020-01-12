@@ -1,5 +1,4 @@
 ERR_MSG_TYPE =: 'ERROR: wrong type'
-ES =: 0;~'';''
 
 var =: 3 : 0
  if. (1&=(3!:0) y) +. (4&=(3!:0) y)
@@ -48,18 +47,16 @@ unify =: 2 : 0
 equ =: 2 : 0
  s =. u unify v (0&{::y)
  if. s ~: 0
-  do. <(s ; }.y) NB.should we really box (=unit)??
+  do. <(s ; }.y)
  else. ''
  end.
 )
 call =: 3 : 'var 1&{:: y'
 fresh =: 3 : '({.y),(>:&.>}.y)'
-verbu =: 3 : '((2&=@(3!:0)@((0;0)&{::) *. 32&=@(3!:0)) :: 0) y' NB.arg given as y`''
-
 mplus =: 2 : 0
- if. u -: '' NB. changed condition order to avoid problem with ''
+ if. u -: ''
   do. v
- elseif. 2&= (3!:0) u NB. only checks for a string, not a procedure
+ elseif. 2&=@(3!:0) 0&{:: u NB.brittle!
   do. v mplus (<u)
  else. ({.u),((}.u) mplus v)
  end.
@@ -67,7 +64,7 @@ mplus =: 2 : 0
 bind =: 2 : 0
  if. u -: ''
   do. ''
- elseif. 2&= (3!:0) u
+ elseif. 2&=@(3!:0) 0&{:: u
   do. (<u) bind v
  else. (v (0&{::u)) mplus ((}.u) bind v)
  end.
