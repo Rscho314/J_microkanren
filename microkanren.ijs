@@ -56,8 +56,9 @@ fresh =: 3 : '({.y),(>:&.>}.y)'
 mplus =: 2 : 0
  if. u -: ''
   do. v
- elseif. 2&=@(3!:0) 0&{:: u NB.brittle!
-  do. v mplus (<u)
+ elseif. (1&=@# *. 32&~:@(3!:0)@>) u NB.brittle!
+  NB.do. <'(',((5!:5)<'v'),') mplus (',((5!:5)<'u'),')'
+  do.<'(',((5!:5)<'v'),') mplus (',((5!:5)<'a'[a=.".@>u),')'
  else. ({.u),((}.u) mplus v)
  end.
 )

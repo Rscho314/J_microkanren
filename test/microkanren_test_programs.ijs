@@ -11,8 +11,21 @@ sixes =: 4 : 0
 )
 
 fives_and_sixes =: 3 :0
- ((call y) fives (fresh y)) disj ((call y) sixes (fresh y))
+ (3 : '(call y) fives (fresh y)') disj (3 : '(call y) sixes (fresh y)') y
+)
+
+
+threes =: 4 : 0
+ (x equ 3) disj ((<'(',(5!:5 <'x'),')threes(',(5!:5 <'y'),')')"_) y
+)
+
+fours =: 4 : 0
+ (x equ 4) disj ((<'(',(5!:5 <'x'),')fours(',(5!:5 <'y'),')')"_) y
+)
+
+threes_and_fours =: 3 : 0
+ (3 : '(call y) threes (fresh y)') disj (3 : '(call y) fours (fresh y)') y
 )
 
 NB. fails
-NB.fives_and_sixes ES
+NB.5 take threes_and_fours ES
