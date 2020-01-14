@@ -96,6 +96,7 @@ test_2nd_set_t5 =: 3 : 0
 test_who_cares =: 3 : 0
  assert. (,<(<(<,0),<,<5),<01) -: 1 take (call ES) fives (fresh ES)
  assert. ((,<(<(<,0),<,<5),<01),(,<(<(<,0),<,<5),<01)) -: 2 take (call ES) fives (fresh ES)
+ assert. ((<(<(<,0),<,<5),<01),(<(<(<,0),<,<6),<01),(<(<(<,0),<,<5),<01),<(<(<,0),<,<6),<01) -: 4 take fives_and_sixes ES
 )
 
 test_take_2_a_and_b_stream =: 3 : 0
