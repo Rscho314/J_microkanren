@@ -64,9 +64,9 @@ mplus =: 2 : 0
 bind =: 2 : 0
  if. u -: ''
   do. ''
- elseif. 2&=@(3!:0) 0&{:: u
-  do. (<u) bind v
- else. (v (0&{::u)) mplus ((}.u) bind v)
+ elseif. (1&=@# *. 32&~:@(3!:0)@>) u NB.brittle!
+  do. <'(',((5!:5)<'a'[a=.".@(0&{::) u),') bind (',((5!:5)<'v'),')'
+ else. (v@(0&{::) u) mplus ((}.u) bind v)
  end.
 )
 disj =: 2 : 0
