@@ -3,7 +3,6 @@ load'~Projects/j_microkanren/test/microkanren_test_programs.ijs'
 
 test_var =: 3 : 0
  assert. (1$3) -: var 3
- assert. ERR_MSG_TYPE -: var ''
 )
 
 test_varu =: 3 : 0
@@ -22,11 +21,8 @@ test_walk =: 3 : 0
 )
 
 test_exts =: 3 : 0
- assert. ERR_MSG_TYPE -: 1 exts 0 '';''
  assert. ((1,'');<(<0),'') -: (1$1) exts 0 '';''
  assert.  ((1 3,'');<(2;'a'),'') -: (1$1) exts 2 (3;<<'a')
- assert. ERR_MSG_TYPE -: 1 exts 2 '';''
- assert. ERR_MSG_TYPE -: '' exts 2 '';''
 )
 
 test_walk_exts =: 3 : 0
