@@ -14,23 +14,27 @@ fives_and_sixes =: 3 : 0
  (3 : '(call y) fives (fresh y)') disj (3 : '(call y) sixes (fresh y)') y
 )
 
-appendo =: 2 : 0 NB.reference: don't touch!
- a =. call y
- d =. call@fresh y
- res =. call@(fresh^:2) y
- ns =. fresh^:3 y NB. y is a state-counter such as ES
+appendo =: 2 : 0 NB.reference, don't touch!
+x;u;v;y
+ ns =. cocreate''
+ a__ns =. call y
+ d__ns =. call@fresh y
+ res__ns =. call@(fresh^:2) y
+ s__ns =. u
+ 
+ ((a__ns;res__ns) equ v) conj (ns&(4 : '<''('',((5!:5)<''d''[d=.d__x),'')('',((5!:5)<''s''[s=.s__x),'')appendo('',((5!:5)<''res''[res=.res__x),'')('',((5!:5)<''y''),'')'' ')) y
+)
 
- (('' equ x) conj (u equ v)) disj ((a;d) equ x) conj ((a;res) equ v) conj ((<'(',(5!:5 <'d'),')(',(5!:5 <'u'),')appendo(',(5!:5 <'res'),')(',(5!:5 <'ns'),')')"_)
+appendo =: 2 : 0
+x;u;v;y
+ ns =. cocreate''
+ a__ns =. call y
+ d__ns =. call@fresh y
+ res__ns =. call@(fresh^:2) y
+ s__ns =. u
+ 
+  ((a__ns;res__ns) equ v) conj (ns&(4 : '<''('',((5!:5)<''d''[d=.d__x),'')('',((5!:5)<''s''[s=.s__x),'')appendo('',((5!:5)<''res''[res=.res__x),'')('',((5!:5)<''y''),'')'' ')) y
 )
 
 NB.(1) (2) appendo (1 2) ES NB.should return a thunk. Possible?
-NB.((1) (2) appendo (1 2) ES) '' NB.should return a state/counter
-
-(0 : 0)
-APPENDO
--------
-+ must be defined as two mutually recursive conjunctions
-- takes 3 args
-+ lvars a, d, res are (,0) (,1) and (,2)
-- hypothesis: l is x, s is u, out is v, state/counter as y
-)
+NB.((1) (2) appendo (1 2) ES) ES NB.should return a state/counter
