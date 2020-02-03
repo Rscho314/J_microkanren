@@ -1,5 +1,16 @@
-var =: ('Error: domain error'"_)`(1&$)@.(0&=@#@$ *. (1&= +. 4&=)@(3!:0))
-varu =: 1&=@#@$ *. (1&= +. 4&=)@(3!:0)
+fail =: 3 : 'assert. 0:y'
+gensym =: 3 : 0
+ curns =. coname''
+ nms =. <''
+ locs =. conl 0
+ for_ijk. locs
+  do. nms=.(nl''),nms[(18!:4) ijk
+ end.
+ (18!:4) curns
+ y"_`fail@.((<,y)&e. +. (<y)&e.) nms
+)
+varu =: 1&=@# *. ('v'&-:@((0;0)&{::) *. 32&=@(3!:0))
+var =: fail`gensym@.varu
 walk =: 4 : 0
  if. ''-:x
   do. ''
@@ -9,24 +20,22 @@ walk =: 4 : 0
  end.
 )
 exts =: 2 : 0
- if. (varu u) *. y -: '';''
-  do. (u&, &.> {.y) , ((<v)&, &.> }.y)
- elseif. varu u
-  do. (u&, &.> {.y) , (v&; &.> }.y)
- end.
+ (u&, &.> {.y) , ((<v)&, &.> }.y)
 )
-pairu =: 0&<@# *. 32&=@(3!:0)
+pairu =: 0&<@#@$ *. 32&=@(3!:0)
 unify =: 2 : 0
  a =. u walk y
  b =. v walk y
- if. (varu a) *. (a-:b)
+ if. (''&-:a) *. (''&-:b)
+  do. y
+ elseif. (varu a) *. (a-:b)
   do. y
  elseif. varu a
   do. a exts b y
  elseif. varu b
   do. b exts a y
  elseif. (pairu a) *. (pairu b)
-  do. (0&{::a) unify (0&{::b) ((}.a) unify (}.b) y)
+  do. ({.a) unify ({.b) ((}.a) unify (}.b) y)
  elseif. a-:b
   do. y
  else. 0
@@ -39,7 +48,7 @@ equ =: 2 : 0
  else. ''
  end.
 )
-call =: var@(1&{::)
+call =: var@<@('v'&,)@":@(1&{::)
 fresh =: {.,{.@:(>:@:]&.>{:)
 mplus =: 2 : 0
  if. u-:''
@@ -50,8 +59,6 @@ mplus =: 2 : 0
  end.
 )
 bind =: 2 : 0
-smoutput u
-smoutput v
  if. u-:''
   do. ''
  elseif. (1&=@# *. 32&~:@(3!:0)@>) u NB.brittle!
