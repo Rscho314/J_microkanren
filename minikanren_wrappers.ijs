@@ -20,7 +20,8 @@ conde =: 4 : 0 NB.2D boxed array of named goals
 )
 
 
-ES =: 0;~'';''
+ES =: |.@(];((<'')#~])) (0 s:0)
+CS =: |.@(];((<'')#~]))
 call_goal =: 1 : '(call ES) u (fresh ES)' NB. postfix
 pull =: 3 : 0
  if. ''&-:y

@@ -1,18 +1,18 @@
-var =: ('Error: domain error'"_)`(1&$)@.(0&=@#@$ *. (1&= +. 4&=)@(3!:0))
-varu =: 1&=@#@$ *. (1&= +. 4&=)@(3!:0)
+fail =: (3 : 'assert. 0:y')
+var =: fail`(s:@<@('v'&,)@":)@.(0&=@#@$ *. (1&= +. 4&=)@(3!:0))
+varu =:  ((5 s:_6 s:i.0 s:0)e.~]) +. 'symbol'&-:@datatype
 walk =: 4 : 0
  if. ''-:x
   do. ''
- elseif. (varu x) *. (x e. 0&{::y)
-  do. (0&{::(x i.~0&{::y){1&{::y) walk y
+ elseif. varu x
+  do. (0&{::(6 s:s:x)&{y) walk y
  else. x
  end.
 )
 exts =: 2 : 0
- if. (varu u) *. y -: '';''
-  do. (u&, &.> {.y) , ((<v)&, &.> }.y)
- elseif. varu u
-  do. (u&, &.> {.y) , (v&; &.> }.y)
+ if. varu u
+  do. (<v)(6 s:s:u)}y
+ else. fail ''
  end.
 )
 pairu =: 0&<@# *. 32&=@(3!:0)
