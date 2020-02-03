@@ -1,4 +1,4 @@
-var =: err`(1&$)@.(0&=@#@$ *. (1&= +. 4&=)@(3!:0))
+var =: ('Error: domain error'"_)`(1&$)@.(0&=@#@$ *. (1&= +. 4&=)@(3!:0))
 varu =: 1&=@#@$ *. (1&= +. 4&=)@(3!:0)
 walk =: 4 : 0
  if. ''-:x
@@ -50,6 +50,8 @@ mplus =: 2 : 0
  end.
 )
 bind =: 2 : 0
+smoutput u
+smoutput v
  if. u-:''
   do. ''
  elseif. (1&=@# *. 32&~:@(3!:0)@>) u NB.brittle!
