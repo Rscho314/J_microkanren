@@ -14,27 +14,30 @@ fives_and_sixes =: 3 : 0
  (3 : '(call y) fives (fresh y)') disj (3 : '(call y) sixes (fresh y)') y
 )
 
-appendo =: 2 : 0 NB.reference, don't touch!
-x;u;v;y
- ns =. cocreate''
- a__ns =. call y
- d__ns =. call@fresh y
- res__ns =. call@(fresh^:2) y
- s__ns =. u
- 
- ((a__ns;res__ns) equ v) conj (ns&(4 : '<''('',((5!:5)<''d''[d=.d__x),'')('',((5!:5)<''s''[s=.s__x),'')appendo('',((5!:5)<''res''[res=.res__x),'')('',((5!:5)<''y''),'')'' ')) y
+appendo =: 2 : 0 NB.The secret: the 1st&2nd conj do not take any y here!
+((((,0);(,1)) equ x) conj ((((,0);(,2)) equ v) conj (u&(4 : '<''(,1)('',((5!:5)<''x''),'')appendo(,2)('',((5!:5)<''y''),'')'''))) )
+)
+
+appendo =: 2 : 0 NB.Probably correct, but fails bc x u c v y must eval to name!
+(('' equ x) conj (u equ v)) disj ((((,0);(,1)) equ x) conj ((((,0);(,2)) equ v) conj (u&(4 : '<''(,1)('',((5!:5)<''x''),'')appendo(,2)('',((5!:5)<''y''),'')'''))) )
 )
 
 appendo =: 2 : 0
-x;u;v;y
  ns =. cocreate''
- a__ns =. call y
- d__ns =. call@fresh y
- res__ns =. call@(fresh^:2) y
- s__ns =. u
- 
-  ((a__ns;res__ns) equ v) conj (ns&(4 : '<''('',((5!:5)<''d''[d=.d__x),'')('',((5!:5)<''s''[s=.s__x),'')appendo('',((5!:5)<''res''[res=.res__x),'')('',((5!:5)<''y''),'')'' ')) y
+ a__ns =. x
+ b__ns =. u
+ c__ns =. v
+ alpha__ns =. call y
+ s1 =. fresh y
+ beta__ns =. call s1
+ s2 =. fresh^:2 y
+ gamma__ns =. call s2
+((ns&(4 : ' '''' equ a__x y')) conj (ns&(4 : 'b__x equ c__x y'))) disj ((((,0);(,1)) equ x) conj ((ns&(4 : '(alpha__x;gamma__x) equ c__x (fresh^:2 y)')) conj (ns&(4 : '<''('',beta__x,'')('',b__x,'')appendo('',gamma__x,'')('',((5!:5)<''y''),'')''')))) y
 )
 
-NB.(1) (2) appendo (1 2) ES NB.should return a thunk. Possible?
-NB.((1) (2) appendo (1 2) ES) ES NB.should return a state/counter
+NB.(,<5) (,<6) appendo (5;6) ES
+NB.(<5) (<6) appendo (5;6) ES
+NB.(5) (6) appendo (5;6) ES
+NB.(5;6) appendo (5;6) ES
+NB.((<5);<<6) appendo (5;6) ES
+NB.(<3) (<4) appendo (3;4) ES
