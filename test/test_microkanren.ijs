@@ -6,28 +6,23 @@ test_var =: 3 : 0
 )
 
 test_varu =: 3 : 0
- assert. 1 -: varu 1$3
- assert. 0 -: varu 1$3.3
+ assert. 1 -: varu (,3)
+ assert. 0 -: varu (,3.3)
  assert. 0 -: varu 'a'
  assert. 0 -: varu ''
 )
 
 test_walk =: 3 : 0
- assert. (1$0) -: (1$0) walk '';''
- assert. 5 -: (1$0) walk (0 2 1);<(5;(1$0);'a')
- assert. 5 -: (1$2) walk (0 2 1);<(5;(1$0);'a')
- assert. 'a' -: (1$1) walk (0 2 1);<(5;(1$0);'a')
- assert. '' -: '' walk (0 2 1);<(5;(1$0);'a')
+ assert. (,0) -: (,0) walk ('';~0)
+ assert. 5 -: (,0) walk 0;(0 2 1);5;(,0);'a'
+ assert. 5 -: (,2) walk 0;(0 2 1);5;(,0);'a'
+ assert. 'a' -: (,1) walk 0;(0 2 1);5;(,0);'a'
+ assert. '' -: '' walk 0;(0 2 1);5;(,0);'a'
 )
 
 test_exts =: 3 : 0
- assert. ((1,'');<(<0),'') -: (1$1) exts 0 '';''
- assert.  ((1 3,'');<(2;'a'),'') -: (1$1) exts 2 (3;<<'a')
-)
-
-test_walk_exts =: 3 : 0
- assert. 'a' -: (1$4) walk (1$1) exts 2 ((4 3);(<((1$3);'a')))
- assert. 2 -: (1$1) walk (1$1) exts 2 ('';'')
+ assert. (0;(,1);0) -: (,1) exts 0 ('';~0)
+ assert. (0;3 1;'a';2) -: (,1) exts (2) (,3) exts 'a' ('';~0)
 )
 
 test_pairu =: 3 : 0
@@ -40,67 +35,61 @@ test_pairu =: 3 : 0
 )
 
 test_unify =: 3 : 0
- assert. ((1$0) exts 2 (0&{::ES))-: (1;(1$0);3) unify (1;2;3) (0&{::ES)
+ assert. (0;(,0);2)-: (1;(1$0);3) unify (1;2;3) ('';~0)
 )
 
 test_equ =: 3 : 0
- assert. (<(1;~(1$0) exts 5 (0&{::ES))) -: (1$0) equ 5 (1;~('';''))
+ assert. (1;(,0);5) -: (,0) equ 5 ('';~1)
 )
 
 test_call =: 3 : 0
- assert. (1$0) -: call ES
+ assert. (,0) -: call ('';~0)
 )
 
 test_fresh =: 3 : 0
- assert. (1;~('';'')) -: fresh ES
+ assert. ('';~1) -: fresh ('';~0)
 )
 
 test_conj =: 3 : 0
- assert. (,<(<(<,0),<,<5),<1) -: (call (2 : '((u y) equ 5) conj ((u y) equ 5) (v y)') fresh ES)
- assert. '' -: call (2 : '((u y) equ 5) conj ((u y) equ 6) (v y)') fresh ES
+ assert. 0
 )
 
 test_equ_call_fresh =: 3 : 0
- assert. (<((0,'');<(<5),'');1) -: (3 : '(call y) equ 5 (fresh y)') ES
+ assert. (1;(,0);5) -: (3 : '(call y) equ 5 (fresh y)') ('';~0)
 )
 
 test_2nd_set_t1 =: 3 : 0
- assert. (((0,'');<(<5),'');1) -: 0&{::(3 : '(call y) equ 5 (fresh y)') ES
+ assert. 0
 )
 
 test_2nd_set_t2 =: 3 : 0
- assert. '' -: }.(3 : '(call y) equ 5 (fresh y)') ES
+ assert. 0
 )
 
 test_2nd_set_t3 =: 3 : 0
- assert. ((<(<0 1),<7;5),<2) -: 0&{:: a_and_b ES
+ assert. 0
 )
 
 test_2nd_set_t3_take =: 3 : 0
- assert. (<((<(<0 1),<7;5),<2)) -: {. a_and_b ES
- assert. (,<(<(<0 01),<7;5),<2) -: 1 take a_and_b ES
+ assert. 0
 )
 
 test_2nd_set_t4 =: 3 : 0
- assert. ((<(<0 1),<7;6),<2) -: 1&{:: a_and_b ES
+ assert. 0
 )
 
 test_2nd_set_t5 =: 3 : 0
- assert. '' -: 2&}. a_and_b ES
+ assert. 0
 )
 
 test_who_cares =: 3 : 0
- assert. (,<(<(<,0),<,<5),<01) -: 1 take (call ES) fives (fresh ES)
- assert. ((,<(<(<,0),<,<5),<01),(,<(<(<,0),<,<5),<01)) -: 2 take (call ES) fives (fresh ES)
- assert. ((<(<(<,0),<,<5),<01),(<(<(<,0),<,<6),<01),(<(<(<,0),<,<5),<01),<(<(<,0),<,<6),<01) -: 4 take fives_and_sixes ES
+ assert. 0
 )
 
 test_take_2_a_and_b_stream =: 3 : 0
- assert. ((<((<(<0 1),<7;5),<2)),(<((<(<0 1),<7;6),<2))) -: 2&{.a_and_b ES
- assert. ((<((<(<0 1),<7;5),<2)),(<((<(<0 1),<7;6),<2))) -: 2 take a_and_b ES
+ assert. 0
 )
 
 test_take_all_a_and_b_stream =: 3 : 0
- assert. ((<((<(<0 1),<7;5),<2)),(<((<(<0 1),<7;6),<2))) -: _&{.a_and_b ES
- assert. ((<((<(<0 1),<7;5),<2)),(<((<(<0 1),<7;6),<2))) -: take_all a_and_b ES
+ assert. 0
 )

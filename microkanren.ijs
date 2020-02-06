@@ -19,15 +19,9 @@ unify =: 2 : 0
  else. 0
  end.
 )
-equ =: 2 : 0
- s =. u unify v y
- if. s = 0
-  do. ''
- else. s
- end.
-)
-call =: var@(1&{::)
-fresh =: {.,{.@:(>:@:]&.>{:)
+equ =: 2 : '(u unify v)`(''''"_)@.(0&-:@(u unify v))y'
+call =: var@(0&{::)
+fresh =: 3 : '(>:&.>0{y)0}y'
 mplus =: 2 : 0
  if. u-:''
   do. v
@@ -44,9 +38,5 @@ bind =: 2 : 0
  else. (v@(0&{::) u) mplus ((}.u) bind v)
  end.
 )
-disj =: 2 : 0
- (u y) mplus (v y)
-)
-conj =: 2 : 0
- (u y) bind v
-)
+disj =: 2 : '(u y) mplus (v y)'
+conj =: 2 : '(u y) bind v'
