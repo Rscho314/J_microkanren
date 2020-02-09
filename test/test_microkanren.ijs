@@ -36,6 +36,9 @@ test_pairu =: 3 : 0
 
 test_unify =: 3 : 0
  assert. (0;(,0);2)-: (1;(1$0);3) unify (1;2;3) ('';~0)
+ assert. 0&-: ((,5);3) unify ((,6);4) ('';~0)
+ assert. 0&-: (3;(,5)) unify (4;(,6)) ('';~0)
+ assert. (0;5 6;4;3)&-: (3;(,5)) unify ((,6);4) ('';~0)
 )
 
 test_equ =: 3 : 0
@@ -52,6 +55,10 @@ test_fresh =: 3 : 0
 
 test_equ_call_fresh =: 3 : 0
  assert. (<1;(,0);5) -: (3 : '(call y) equ 5 (fresh y)') ('';~0)
+)
+
+test_fives_and_sixes =: 3 : 0
+ assert. ((1;(,0);5);(1;(,0);6);(<1;(,0);5))&-:3 take fives_and_sixes ('';~0)
 )
 
 test_2nd_set_t1 =: 3 : 0
